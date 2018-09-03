@@ -1,16 +1,52 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import {
+  EventsListComponent,
+  EventThumbnailComponent,
+  EventDetailsComponent,
+  CreateEventComponent,
+  EventsService,
+  EventRouteActivatorService,
+  EventsResolverService
+} from './events';
+
+import { EventsAppComponent } from './events-app.component';
+import { NavBarComponent } from './nav/nav-bar.component';
+import { Error404Component } from './errors/404.component';
+
+import { ToastrService } from './common/toastr.service';
+
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
-    AppComponent
+    EventsAppComponent,
+    EventsListComponent,
+    EventThumbnailComponent,
+    NavBarComponent,
+    EventDetailsComponent,
+    CreateEventComponent,
+    Error404Component
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [EventsService,
+    ToastrService,
+    EventRouteActivatorService,
+    { provide: 'createDeactiveRoute', useValue: checkIsDirty },
+    EventsResolverService],
+  bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
+
+export function checkIsDirty(component: CreateEventComponent) {
+  if (component.isDirty) {
+    return window.confirm('Do you really want to save?');
+  }
+
+  return true;
+}
