@@ -5,19 +5,19 @@ declare let toastr;
 @Injectable()
 export class ToastrService {
 
-  success(message: string, title?: string) {
+  success(message: string, title?: string): void {
     toastr.success(message, title);
   }
 
-  info(message: string, title?: string) {
+  info(message: string, title?: string): void {
     toastr.info(message, title);
   }
 
-  warning(message: string, title?: string) {
+  warning(message: string, title?: string): void {
     toastr.warning(message, title);
   }
 
-  error(message: string, title?: string) {
+  error(message: string, title?: string): void {
     toastr.error(message, title);
   }
 

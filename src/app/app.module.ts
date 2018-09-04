@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from './user/auth.service';
 
 import {
   EventsListComponent,
@@ -38,7 +39,8 @@ import { appRoutes } from './routes';
     ToastrService,
     EventRouteActivatorService,
     { provide: 'createDeactiveRoute', useValue: checkIsDirty },
-    EventsResolverService],
+    EventsResolverService,
+    AuthService],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
