@@ -5,8 +5,8 @@ import { IEvent } from '../shared';
   selector: 'event-thumbnail',
   templateUrl: 'event-thumbnail.component.html',
   styles: [`
-     .thumbnail {min-height: 210px;}
-    .pad-left {margin-left: 10px;}
+     .thumbnail {min-height: 230px;}
+      .pad-left {margin-left: 10px;}
   `]
 })
 export class EventThumbnailComponent {
