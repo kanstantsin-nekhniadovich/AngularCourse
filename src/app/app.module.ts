@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   EventsListComponent,
@@ -10,16 +11,21 @@ import {
   CreateEventComponent,
   EventsService,
   EventRouteActivatorService,
-  EventsResolverService
+  EventsResolverService,
+  CreateSessionComponent,
+  SessionListComponent,
+  DurationPipe
 } from './events';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN } from './common';
 
 import { appRoutes } from './routes';
+
+let toastr: IToastr = window['toastr'];
+let jquery: Object = window['$'];
 
 @NgModule({
   declarations: [
@@ -29,14 +35,25 @@ import { appRoutes } from './routes';
     NavBarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [EventsService,
-    ToastrService,
+    {
+      provide: TOASTR_TOKEN, useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN, useValue: jquery
+    },
     EventRouteActivatorService,
     { provide: 'createDeactiveRoute', useValue: checkIsDirty },
     EventsResolverService,
