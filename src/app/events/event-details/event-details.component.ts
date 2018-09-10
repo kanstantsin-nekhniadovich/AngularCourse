@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../shared/events.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { IEvent, ISession } from '../../shared';
 
 @Component({
@@ -8,7 +8,7 @@ import { IEvent, ISession } from '../../shared';
   styles: [`
     .container {padding-left: 20px; padding-right: 20px;}
     .event-image {height: 100px;}
-    .add-session-link {cursor: pointer; float: right;}
+    .add-session-link {cursor: pointer;}
   `]
 })
 export class EventDetailsComponent implements OnInit {
@@ -21,9 +21,10 @@ export class EventDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.event = this.eventsService.getEvent(
-      +this.route.snapshot.params['id']
-    );
+    this.route.params.forEach((param: Params) => {
+      this.event = this.eventsService.getEvent(+param['id']);
+      this.addMode = false;
+    });
   }
 
   addNewSession() {

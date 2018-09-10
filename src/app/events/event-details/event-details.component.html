@@ -23,25 +23,26 @@
   </div>
   <hr />
   <div class="row">
-    <div class="col-md-2">
-      <h2 style="margin:0">Session</h2>
-    </div>
-    <div class="col-md-6" style="margin-bottom: 10px">
-      <div class="btn-group btn-group-sm" style="margin-left: 20px; margin-right: 20px">
-        <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">Name</button>
-        <button class="btn btn-default" [class.active]="sortBy==='votes'" (click)="sortBy='votes'">Votes</button>
+    <div class="row">
+      <div class="col-md-3">
+        <h2 style="margin:0">Session</h2>
       </div>
-      <div class="btn-group btn-group-sm">
-        <button class="btn btn-default" [class.active]="filteredBy==='all'" (click)="filteredBy='all'">All</button>
-        <button class="btn btn-default" [class.active]="filteredBy==='beginner'" (click)="filteredBy='beginner'">Beginner</button>
-        <button class="btn btn-default" [class.active]="filteredBy==='intermediate'" (click)="filteredBy='intermediate'">Intermediate</button>
-        <button class="btn btn-default" [class.active]="filteredBy==='advanced'" (click)="filteredBy='advanced'">Advanced</button>
+      <div class="col-md-7" style="margin-bottom: 10px">
+        <div class="btn-group btn-group-sm" style="margin-left: 20px; margin-right: 20px">
+          <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">Name</button>
+          <button class="btn btn-default" [class.active]="sortBy==='votes'" (click)="sortBy='votes'">Votes</button>
+        </div>
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-default" [class.active]="filteredBy==='all'" (click)="filteredBy='all'">All</button>
+          <button class="btn btn-default" [class.active]="filteredBy==='beginner'" (click)="filteredBy='beginner'">Beginner</button>
+          <button class="btn btn-default" [class.active]="filteredBy==='intermediate'" (click)="filteredBy='intermediate'">Intermediate</button>
+          <button class="btn btn-default" [class.active]="filteredBy==='advanced'" (click)="filteredBy='advanced'">Advanced</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <a class="add-session-link" (click)="addNewSession()">Add Session</a>
       </div>
     </div>
-    <div class="col-md-2 clearfix">
-      <a class="add-session-link" (click)="addNewSession()">Add Session</a>
-    </div>
-
     <session-list *ngIf="!addMode" [sortBy]="sortBy" [filteredBy]="filteredBy" [sessions]="event?.sessions"></session-list>
     <create-session (cancelAddNewSession)="cancel()" (saveNewSession)="saveNewSession($event)" *ngIf="addMode"></create-session>
   </div>

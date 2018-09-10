@@ -14,13 +14,22 @@ import {
   EventsResolverService,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  VotedService
 } from './events';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common';
+import {
+  TOASTR_TOKEN,
+  IToastr,
+  CollapsibleWellComponent,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common';
 
 import { appRoutes } from './routes';
 
@@ -41,7 +50,8 @@ let jquery: Object = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +69,7 @@ let jquery: Object = window['$'];
     EventRouteActivatorService,
     { provide: 'createDeactiveRoute', useValue: checkIsDirty },
     EventsResolverService,
+    VotedService,
     AuthService],
   bootstrap: [EventsAppComponent]
 })

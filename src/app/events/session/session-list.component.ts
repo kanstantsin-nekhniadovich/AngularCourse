@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ISession } from '../';
+import { AuthService } from '../../user/auth.service';
+import { VotedService } from '../voted.service';
 
 @Component({
   selector: 'session-list',
@@ -10,6 +12,8 @@ export class SessionListComponent implements OnChanges {
   @Input() filteredBy: string;
   @Input() sortBy: string;
   visibleSessions: ISession[] = [];
+
+  constructor(private authService: AuthService, private votedService: VotedService) { }
 
   ngOnChanges() {
     if (this.sessions) {
@@ -23,6 +27,22 @@ export class SessionListComponent implements OnChanges {
       this.visibleSessions = this.sessions.slice(0);
     } else {
       this.visibleSessions = this.sessions.filter(session => session.level.toLocaleLowerCase() === filter);
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this.votedService.userHasVoted(session, this.authService.currentUser.userName);
+  }
+
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.votedService.removeVote(session, this.authService.currentUser.userName);
+    } else {
+      this.votedService.addVote(session, this.authService.currentUser.userName);
+    }
+
+    if (this.sortBy === 'vote') {
+      this.visibleSessions.sort(sortByVotes);
     }
   }
 }

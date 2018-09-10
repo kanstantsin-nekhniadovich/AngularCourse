@@ -6,4 +6,6 @@ export * from './event-details/event-details.component';
 export * from './create-event/create-event.component';
 export * from './session/create-session.component';
 export * from './session/session-list.component';
+export * from './event-details/upvote.component';
+export * from './voted.service';
 export * from '../shared';
