@@ -20,7 +20,7 @@ import {
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN } from './common';
+import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common';
 
 import { appRoutes } from './routes';
 
@@ -39,7 +39,9 @@ let jquery: Object = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
