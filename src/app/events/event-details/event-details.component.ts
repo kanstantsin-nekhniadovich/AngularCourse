@@ -35,8 +35,9 @@ export class EventDetailsComponent implements OnInit {
     let id = Math.max.apply(null, this.event.sessions.map(s => s.id));
     session.id = id++;
     this.event.sessions.push(session);
-    this.eventsService.updateEvent(this.event);
-    this.addMode = false;
+    this.eventsService.saveEvent(this.event).subscribe(() => {
+      this.addMode = false;
+    });
   }
 
   cancel() {

@@ -43,12 +43,21 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserProfile(profileValues) {
-    this.authService.updateUserInfo(profileValues.firstName, profileValues.lastName);
-    this.toastr.success('Profile updated');
+    this.authService.updateUserInfo(profileValues.firstName, profileValues.lastName)
+      .subscribe(() => {
+        this.toastr.success('Profile updated');
+      });
   }
 
   cancel() {
     this.router.navigate(['/events']);
+  }
+
+  logOut() {
+    this.authService.logOut()
+      .subscribe(() => {
+        this.router.navigate(['/user/login']);
+      });
   }
 
 }

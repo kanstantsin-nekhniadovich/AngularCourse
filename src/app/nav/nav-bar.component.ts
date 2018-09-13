@@ -19,7 +19,7 @@ export class NavBarComponent {
 
   }
 
-  searchSessions(searchTerm) {
+  searchSessions(searchTerm: string) {
     this.eventsService.searchSession(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
     });
