@@ -3,21 +3,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
   EventThumbnailComponent,
   EventDetailsComponent,
   CreateEventComponent,
-  EventsService,
-  EventRouteActivatorService,
   EventsResolverService,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe,
   UpvoteComponent,
-  VotedService
+  VotedService,
+  EventResolverService
 } from './events';
+
+import {
+  EventsService,
+  DurationPipe
+} from './shared'
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
@@ -57,6 +61,7 @@ let jquery: Object = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [EventsService,
@@ -66,9 +71,9 @@ let jquery: Object = window['$'];
     {
       provide: JQ_TOKEN, useValue: jquery
     },
-    EventRouteActivatorService,
     { provide: 'createDeactiveRoute', useValue: checkIsDirty },
     EventsResolverService,
+    EventResolverService,
     VotedService,
     AuthService],
   bootstrap: [EventsAppComponent]

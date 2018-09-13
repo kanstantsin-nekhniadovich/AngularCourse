@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISession } from '../events/index';
+import { ISession } from '../shared';
 
 @Injectable()
 export class VotedService {

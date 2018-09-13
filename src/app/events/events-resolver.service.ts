@@ -13,6 +13,6 @@ export class EventsResolverService implements Resolve<any>{
   }
 
   resolve(): Observable<IEvent[]> {
-    return this.eventsService.getEvents().pipe(map(events => events));
+    return this.eventsService.getEvents();
   }
 }
