@@ -14,6 +14,7 @@ export class VotedService {
   }
 
   removeVote(eventId: number, session: ISession, username: string) {
+    session.voters = session.voters.filter(voter => voter !== username);
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${username}`;
     this.http.delete(url)
       .pipe(catchError(this.handleError('removeVote')))
@@ -21,6 +22,7 @@ export class VotedService {
   }
 
   addVote(eventId: number, session: ISession, username: string) {
+    session.voters.push(username);
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${username}`;
     const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     this.http.post(url, {}, options)
